@@ -1,7 +1,8 @@
 export const GUESS = 'GUESS';
-export const guess = guess => ({
+export const guess = (guess, feedback) => ({
   type: GUESS,
-  guess
+  guess,
+  feedback
 });
 
 export const NEW_GAME = 'NEW_GAME';

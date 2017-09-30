@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
   guesses: [],
   feedback: 'Make your guess',
   correctAnswer: Math.floor(Math.random() * 100) + 1,
-  showInfoModal: false
+  
 };
 
 const newGame = (state, action) => {
@@ -13,7 +13,8 @@ const newGame = (state, action) => {
 
 const guess = (state, action) => {
   return Object.create({}, state, {
-    guesses: [...state.guesses, action.guess]
+    guesses: [...state.guesses, action.guess],
+    feedback: action.feedback
   });
 }
 
