@@ -1,9 +1,10 @@
-import {GUESS, NEW_GAME} from '../actions';
+import {GUESS, NEW_GAME, TOGGLE_INFOMODAL} from '../actions';
 
 const DEFAULT_STATE = {
   guesses: [],
   feedback: 'Make your guess',
-  correctAnswer: Math.floor(Math.random() * 100) + 1
+  correctAnswer: Math.floor(Math.random() * 100) + 1,
+  showInfoModal: false
 
 };
 
@@ -24,12 +25,20 @@ const guess = (state, action) => {
   });
 }
 
+const toggleInfoModal = (state, action) => {
+  return Object.assign({}, state, {
+    showInfoModal: action.showInfoModal
+  });
+}
+
 export const rootReducer = (state= DEFAULT_STATE, action) => {
   switch(action.type) {
     case NEW_GAME:
       return newGame(state, action);
     case GUESS:
       return guess(state, action);
+    case TOGGLE_INFOMODAL:
+      return toggleInfoModal(state, action);
     default:
       return state;
   }
