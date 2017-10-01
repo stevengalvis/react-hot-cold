@@ -3,17 +3,23 @@ import {GUESS, NEW_GAME} from '../actions';
 const DEFAULT_STATE = {
   guesses: [],
   feedback: 'Make your guess',
-  correctAnswer: Math.floor(Math.random() * 100) + 1,
-  
+  correctAnswer: Math.floor(Math.random() * 100) + 1
+
 };
 
 const newGame = (state, action) => {
-  return Object.create({}, state, DEFAULT_STATE);
+  return Object.assign({}, state, DEFAULT_STATE);
 }
 
 const guess = (state, action) => {
-  return Object.create({}, state, {
-    guesses: [...state.guesses, action.guess],
+  if (action.guess && action.feedback) {
+
+    return Object.assign({}, state, {
+      guesses: [...state.guesses, action.guess],
+      feedback: action.feedback
+    });
+  }
+  return Object.assign({}, state, {
     feedback: action.feedback
   });
 }
